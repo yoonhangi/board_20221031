@@ -10,14 +10,20 @@
 <head>
     <title>글 작성하기</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <style>
+        #writer-form{
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <form action="/boardSave" method="post">
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+    <div class="container" id="writer-form">
+        <form action="/board/save" method="post">
             <input type="text" name="boardTitle" class="form-control" placeholder="제목"><br>
             <input type="text" name="boardWriter" class="form-control" placeholder="작성자"><br>
             <input type="text" name="boardPass" class="form-control" placeholder="글비밀번호"><br>
-            <input type="text" name="boardContents" class="form-control" placeholder="내용">
+            <textarea name="boardContents" cols="30" rows="10" class="form-control" placeholder="내용을 입력하세요"></textarea>
             <input type="submit" value="작성" class="btn btn-primary">
         </form>
     </div>

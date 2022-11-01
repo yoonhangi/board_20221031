@@ -4,15 +4,22 @@
 
 
 <mapper namespace="Board">
-<insert id="boardSave" parameterType="board">
+<insert id="save" parameterType="board">
     insert into board_table(boardWriter, boardPass, boardTitle, boardContents) values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents})
 </insert>
-    <select id="board" resultType="board">
+    <select id="findAll" resultType="board">
         select * from board_table
     </select>
-    <select id="findByBoard" parameterType="String" resultType="board">
-        select * from board_table where boardTitle=#{boardTitle}
+    <update id="updateHits" parameterType="Long">
+        update board_table set boardHits = boardHits + 1 where id=#{id}
+    </update>
+    <select id="findById" parameterType="Long" resultType="board">
+        select * from board_table where id=#{id}
     </select>
+    <select id="updateFn" resultType="board">
+        select * from board_table where id=#{id}
+    </select>
+
 </mapper>
 
 

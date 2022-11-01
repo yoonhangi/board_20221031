@@ -12,15 +12,28 @@ public class BoardRepository {
     @Autowired
     private SqlSessionTemplate sql;
 
-    public int boardSave(BoardDTO boardDTO) {
-        return sql.insert("Board.boardSave", boardDTO);
+    public int save(BoardDTO boardDTO) {
+        return sql.insert("Board.save", boardDTO);
     }
 
-    public List<BoardDTO> board() {
-        return sql.selectList("Board.board");
+    public List<BoardDTO> findAll() {
+        return sql.selectList("Board.findAll");
     }
 
-    public BoardDTO findByBoard(String title) {
-        return sql.selectOne("Board.findByBoard", title);
+    public void updateHits(Long id) {
+        sql.update("Board.updateHits",id);
+    }
+
+    public BoardDTO findById(Long id) {
+        return sql.selectOne("Board.findById", id);
+    }
+
+
+    public BoardDTO updateFn(BoardDTO boardDTO) {
+        return sql.selectOne("Board.updateFn",boardDTO);
+    }
+
+    public int update(BoardDTO boardDTO) {
+        return sql.update("Board.update", boardDTO);
     }
 }

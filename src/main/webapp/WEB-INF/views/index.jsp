@@ -12,7 +12,11 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
-<a href="/save">글작성</a>
+<a href="/board/save">글작성</a>
+<a href="/board/">글목록</a>
 </body>
 
 </html>
+<%--글작성, 회원가입
+    /boardSave /memberSave
+    /board/save /member/save--%>
