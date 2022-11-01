@@ -4,7 +4,12 @@
 
 
 <mapper namespace="Board">
-
+<insert id="boardSave" parameterType="board">
+    insert into board_table(boardWriter, boardPass, boardTitle, boardContents) values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents})
+</insert>
+    <select id="board" resultType="board">
+        select * from board_table
+    </select>
 </mapper>
 
 
