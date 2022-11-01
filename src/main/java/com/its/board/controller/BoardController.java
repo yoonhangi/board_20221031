@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,6 +38,13 @@ public class BoardController {
         List<BoardDTO> boardList = boardService.board();
         model.addAttribute("boardList", boardList);
         return "/boardList";
+    }
+
+    @GetMapping("/board")
+    public String findByBoard(@RequestParam("title") String title, Model model){
+        BoardDTO boardDTO = boardService.findByBoard(title);
+        model.addAttribute("board", boardDTO);
+        return "boardDetail";
     }
 
 }

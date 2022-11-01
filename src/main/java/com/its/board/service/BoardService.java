@@ -23,4 +23,8 @@ public class BoardService {
     public List<BoardDTO> board() {
       return boardRepository.board();
     }
+
+    public BoardDTO findByBoard(String title) {
+        return boardRepository.findByBoard(title);
+    }
 }

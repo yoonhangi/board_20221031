@@ -19,4 +19,8 @@ public class BoardRepository {
     public List<BoardDTO> board() {
         return sql.selectList("Board.board");
     }
+
+    public BoardDTO findByBoard(String title) {
+        return sql.selectOne("Board.findByBoard", title);
+    }
 }

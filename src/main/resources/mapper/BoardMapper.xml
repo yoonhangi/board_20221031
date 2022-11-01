@@ -10,6 +10,9 @@
     <select id="board" resultType="board">
         select * from board_table
     </select>
+    <select id="findByBoard" parameterType="String" resultType="board">
+        select * from board_table where boardTitle=#{boardTitle}
+    </select>
 </mapper>
 
 
