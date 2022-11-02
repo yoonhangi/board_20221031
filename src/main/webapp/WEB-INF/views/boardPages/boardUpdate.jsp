@@ -19,13 +19,15 @@
     </style>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container"id="update-form">
     <form action="/board/update" method="post" name="updateForm">
+<%-- hidden 화면에는 안보이지만  --%>
         글번호: <input type="text" name="id" value="${board.id}" class="form-control" readonly>
         작성자: <input type="text"  name='boardWriter' value="${board.boardWriter}" class="form-control" readonly>
         비밀번호: <input type="text" name="boardPass" id="boardPass" class="form-control">
         제목: <input type="text" name="boardTitle" value="${board.boardTitle}" class="form-control">
-        내용: <input type="text" name="boardContents" value="${board.boardContents}" class="form-control">
+        내용: <textarea name="boardContents" id="" cols="30" rows="10" class="form-control">${board.boardContents}</textarea>
         <input type="button" value="수정" onclick="update()" class="btn btn-danger">
     </form>
 </div>

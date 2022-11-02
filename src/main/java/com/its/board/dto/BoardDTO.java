@@ -4,7 +4,7 @@ package com.its.board.dto;
 import lombok.*;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
