@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -24,14 +25,9 @@ public class BoardController {
 
 
    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ModelAttribute BoardDTO boardDTO, Model model){
-       boolean result = boardService.save(boardDTO);
-       model.addAttribute("result", result);
-       if (result) {
+    public String save(@ModelAttribute BoardDTO boardDTO, Model model) throws IOException {
+       boardService.save(boardDTO);
           return "redirect:/board/";
-       } else {
-           return "index";
-       }
     }
 
     @GetMapping("/")
@@ -44,10 +40,11 @@ public class BoardController {
     // 상세조회: /board?id=
     // 파라미터만 받아오면 되기 때문에 주소를 안써도 된다.
     @GetMapping
-    public String findByBoard(@RequestParam("id") Long id, Model model){
+    public String findById(@RequestParam("id") Long id, Model model){
         boardService.updateHits(id);
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
+        System.out.println("조회: boardDTO="+boardDTO );
         return "boardPages/boardDetail";
     }
 

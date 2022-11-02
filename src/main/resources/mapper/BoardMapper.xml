@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="Board">
-<insert id="save" parameterType="board">
-    insert into board_table(boardWriter, boardPass, boardTitle, boardContents) values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents})
+<insert id="save" parameterType="board" useGeneratedKeys="true" keyProperty="id">
+    insert into board_table(boardWriter, boardPass, boardTitle, boardContents, fileAttached) values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents}, #{fileAttached})
 </insert>
+    <insert id="saveFile" parameterType="board">
+        insert into board_file_table(originalFileName, storedFileName, boardId) values (#{originalFileName}, #{storedFileName}, #{id})
+    </insert>
     <select id="findAll" resultType="board">
         select * from board_table
     </select>
@@ -16,7 +18,9 @@
     <select id="findById" parameterType="Long" resultType="board">
         select * from board_table where id=#{id}
     </select>
-
+    <select id="findByIdFile" parameterType="Long" resultType="board">
+        select * from board_table b, board_file_table bf where b.id=bf.boardId and b.id=#{id}
+    </select>
     <update id="update" parameterType="board">
         update board_table set boardTitle=#{boardTitle}, boardContents=#{boardContents} where id=#{id}
     </update>
