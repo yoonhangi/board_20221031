@@ -10,7 +10,7 @@
         insert into board_file_table(originalFileName, storedFileName, boardId) values (#{originalFileName}, #{storedFileName}, #{id})
     </insert>
     <select id="findAll" resultType="board">
-        select * from board_table
+        select * from board_table order by id desc
     </select>
     <update id="updateHits" parameterType="Long">
         update board_table set boardHits = boardHits + 1 where id=#{id}
@@ -33,6 +33,11 @@
     </select>
     <select id="boardCount" resultType="Integer">
         select count(id) from board_table
+    </select>
+    <select id="search" parameterType="java.util.HashMap" resultType="board">
+            -- 컬럼이름 변수 처리할 때 는 $를 쓴다
+            -- concat - 함수끼리 연결해주는 역할
+        select * from board_table where ${type} like concat('%', #{q}, '%') order by id desc
     </select>
 </mapper>
 

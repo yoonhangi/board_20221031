@@ -115,4 +115,12 @@ public class BoardService {
         pageDTO.setEndPage(endPage);
         return pageDTO;
     }
+
+    public List<BoardDTO> search(String type, String q) {
+        Map<String, String> searchParams = new HashMap<>();
+        searchParams.put("type", type);
+        searchParams.put("q", q);
+        List<BoardDTO> searchList = boardRepository.search(searchParams);
+        return searchList;
+    }
 }
