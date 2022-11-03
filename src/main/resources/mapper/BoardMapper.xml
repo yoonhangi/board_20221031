@@ -27,6 +27,13 @@
     <delete id="delete" parameterType="Long">
         delete from board_table where id=#{id}
     </delete>
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
+        -- Map으로 넘길 때는 key값을 넘긴다.
+        select * from board_table order by id desc Limit #{start}, #{limit}
+    </select>
+    <select id="boardCount" resultType="Integer">
+        select count(id) from board_table
+    </select>
 </mapper>
 
 
