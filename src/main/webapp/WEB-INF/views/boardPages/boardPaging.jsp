@@ -37,7 +37,7 @@
                 <td><a href="/board?id=${board.id}&page=${paging.page}">${board.boardTitle}</a></td>
                 <td>${board.boardWriter}</td>
                 <td>
-                    <fmt:formatDate value="${board.boardCreateData}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                    <fmt:formatDate value="${board.boardCreateDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                 </td>
                 <td>${board.boardHits}</td>
             </tr>

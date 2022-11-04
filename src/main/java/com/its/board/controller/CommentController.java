@@ -17,7 +17,8 @@ public class CommentController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public @ResponseBody List<CommentDTO> save(@ModelAttribute CommentDTO commentDTO){
-        commentService.save(commentDTO);
-        return null;
+        commentService.save(commentDTO); // service 클래스로 넘겨준다
+       List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
+        return commentDTOList;
     }
 }
